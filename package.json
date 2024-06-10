@@ -1,0 +1,14 @@
+{
+  "name": "flareup",
+  "version": "1.0.0",
+  "description": "Cloud flare api calls",
+  "main": "bin/index.js",
+  "author": "Özcan ARICan",
+  "license": "ISC",
+  "bin": {
+    "flareup": "./bin/index.js"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}
