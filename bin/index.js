@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 const yargs = require("yargs");
 const fs = require("fs");
+const os = require("os");
+const path = require("path");
+const userHomeDir = os.homedir();
 
 let settings = null
+let settingsPath = path.join(userHomeDir, ".config", "settings.json");
+
 const options = yargs
     .usage("Usage: -d <domain> -i <ip>")
     .option("a", { alias: "api", describe: "Your api key", type: "string", demandOption: false })
@@ -136,17 +141,17 @@ const createRecord = async (zone, domain, ip) => {
 }
 
 const startLogic = async () => {
-    let isExists = fs.existsSync( __dirname + "/settings.json")
+    let isExists = fs.existsSync( settingsPath)
     if (!isExists) {
-        fs.writeFileSync(__dirname + "/settings.json", JSON.stringify({
+        fs.writeFileSync(settingsPath, JSON.stringify({
             api: ""
         }))
     }
-    settings = JSON.parse(fs.readFileSync(__dirname + "/settings.json", "utf8"))
+    settings = JSON.parse(fs.readFileSync(settingsPath, "utf8"))
 
     if (options.api) {
         settings.api = options.api
-        fs.writeFileSync("./settings.json", JSON.stringify(settings))
+        fs.writeFileSync(settingsPath, JSON.stringify(settings))
         console.log("Apikey has been updated")
         console.log("Use: flareup -d <domain> -i <ipaddress>")
         console.log("You can skip ip address parameter for using your own public ip")
