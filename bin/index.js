@@ -136,13 +136,13 @@ const createRecord = async (zone, domain, ip) => {
 }
 
 const startLogic = async () => {
-    let isExists = fs.existsSync("./settings.json")
+    let isExists = fs.existsSync( __dirname + "/settings.json")
     if (!isExists) {
-        fs.writeFileSync("./settings.json", JSON.stringify({
+        fs.writeFileSync(__dirname + "/settings.json", JSON.stringify({
             api: ""
         }))
     }
-    settings = JSON.parse(fs.readFileSync("./settings.json", "utf8"))
+    settings = JSON.parse(fs.readFileSync(__dirname + "/settings.json", "utf8"))
 
     if (options.api) {
         settings.api = options.api
