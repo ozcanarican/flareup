@@ -19,7 +19,9 @@ func Prepare() {
 	if err != nil {
 		log.Fatalln("Couldnt get user home dir")
 	}
-	er := godotenv.Load(fmt.Sprintf("%v/.config/.flareup", home))
+	filePath := fmt.Sprintf("%v/.config/.flareup", home)
+	fmt.Println("Env file path", filePath)
+	er := godotenv.Load(filePath)
 	if er != nil {
 		log.Fatal("No .env file")
 	}
