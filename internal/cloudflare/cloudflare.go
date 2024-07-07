@@ -15,7 +15,7 @@ import (
 var apiKey string = ""
 
 func Prepare() {
-	err := godotenv.Load()
+	err := godotenv.Load("~/.config/.flareup")
 	if err != nil {
 		log.Fatal("No .env file")
 	}
