@@ -15,8 +15,12 @@ import (
 var apiKey string = ""
 
 func Prepare() {
-	err := godotenv.Load("~/.config/.flareup")
+	home, err := os.UserHomeDir()
 	if err != nil {
+		log.Fatalln("Couldnt get user home dir")
+	}
+	er := godotenv.Load(fmt.Sprintf("%v/.config/.flareup", home))
+	if er != nil {
 		log.Fatal("No .env file")
 	}
 	apiKey = os.Getenv("API_KEY")
