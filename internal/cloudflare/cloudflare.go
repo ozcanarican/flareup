@@ -94,7 +94,7 @@ func FindZoneByName(z string) ZoneStruct {
 	var found ZoneStruct
 
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", apiURL(`zones`), nil)
+	req, err := http.NewRequest("GET", apiURL(`zones`)+"?name="+z+"&order=name", nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
